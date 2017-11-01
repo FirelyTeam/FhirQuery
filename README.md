@@ -11,13 +11,15 @@ This idea serves to provide an alternative to GraphQL which is another good cand
 - Use FhirPath for projection (select)
 - Use existing FHIR search parameters for filtering (where)
 
-Example queries:
+## Some examples
+
+### SQL Compatible
 In terms of input format, this query still adheres to regular SQL 
 ```SQL
 select name, birthDate from Patient where id = 4
 ```
-
-Useage of FhirPath for projection:
+### Usage of FhirPath for projection
+Fhir path statements return either a scalar or a collection of substructures of a resource. They can be used to build custom XML and JSON structures, but do not necessarily  flatten the output hierarchy.
 ```SQL
 select 
     name.family, 
@@ -25,3 +27,10 @@ select
 from
     Patient
 ```
+
+### Using FHIR Search parameters
+FHIR search parameters themselves flatten the hierarchy of their corresponding resource, and are a natural fit for filtering.
+```SQL
+select * from Patient where email = 'patientzero@test.com'
+```
+
