@@ -12,7 +12,6 @@ namespace fquerypoc
             var segments = s.Split("as");
             string _name = (segments.Length > 1) ? segments[1].Trim() : null;
             return new Field { Expression = segments[0].Trim(), Name = _name };
-
         }
 
         public Query ParseQuery(string query)
