@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace fquerypoc
+namespace Fhir.FQuery
 {
     public class Query
     {

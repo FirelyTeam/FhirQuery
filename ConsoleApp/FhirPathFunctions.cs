@@ -4,7 +4,7 @@ using Hl7.FhirPath;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace fquerypoc
+namespace Fhir
 {
     public static class FhirPathFunctions
     {

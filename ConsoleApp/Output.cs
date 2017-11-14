@@ -3,7 +3,7 @@ using Hl7.FhirPath;
 using System;
 using System.Text;
 
-namespace fquerypoc
+namespace Fhir
 {
     public static class Output
     {

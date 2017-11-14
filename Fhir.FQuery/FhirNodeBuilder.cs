@@ -1,9 +1,9 @@
 ﻿using Hl7.Fhir.ElementModel;
 using System.Collections.Generic;
 
-namespace fquerypoc
+namespace Fhir.FQuery
 {
-    public static class FhirNodeBuilder
+    public static class NodeBuilder
     {
         public static void Apply(this ElementNode parent, IElementNavigator nav, string name = null)
         {

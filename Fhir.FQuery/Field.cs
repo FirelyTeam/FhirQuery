@@ -1,4 +1,4 @@
-﻿namespace fquerypoc
+﻿namespace Fhir.FQuery
 {
     public struct Field
     {

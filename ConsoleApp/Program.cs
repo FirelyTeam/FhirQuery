@@ -2,8 +2,9 @@
 using System;
 using Hl7.FhirPath;
 using System.Text;
+using Fhir.FQuery;
 
-namespace fquerypoc
+namespace Fhir
 {
 
     class Program
@@ -13,7 +14,8 @@ namespace fquerypoc
             var patient = TestData.Get("Patient/example");
             Output.Print(patient);
 
-            string query = @"
+            string query = 
+            @"
                 select 
                     name.family[0].upper(),
                     name.given.glue('+'),
@@ -25,12 +27,13 @@ namespace fquerypoc
                     birthDate.extension.value as birthday, 
                     active
                 from
-                    Patient";
+                    Patient
+            ";
 
             FhirPathCompiler.DefaultSymbolTable.AddSimplifierFunctions(); 
            
-            var parser = new FhirQueryParser();
-            var result = parser.Query(patient, query);
+            var engine = new QueryEngine();
+            var result = engine.Select(patient, query);
             Output.Print(result);
             
             Console.ReadKey();
