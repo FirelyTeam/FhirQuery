@@ -1,4 +1,5 @@
 ﻿using Hl7.Fhir.ElementModel;
+using Hl7.Fhir.Rest;
 using Hl7.FhirPath;
 using System.Linq;
 
@@ -29,6 +30,14 @@ namespace Fhir.FQuery
                 Fields = fields.ToList(),
                 From = _from
             };
+        }
+
+        public static SearchParams ToSearchParams(this Query query)
+        {
+            // should eventually translate query.Where;
+            var pars = new SearchParams();
+            pars = pars.LimitTo(10);
+            return pars;
         }
 
         

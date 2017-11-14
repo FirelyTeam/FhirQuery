@@ -1,6 +1,7 @@
 ﻿using Hl7.Fhir.ElementModel;
 using Hl7.FhirPath;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Fhir
@@ -12,7 +13,19 @@ namespace Fhir
             Console.WriteLine(AsJson(navigator));
         }
 
-        public static string AsJson(IElementNavigator navigator, int indent = 0)
+        public static string ToJson(this IEnumerable<IElementNavigator> navigators)
+        {
+            var builder = new StringBuilder();
+
+            foreach (var nav in navigators)
+            {
+                string s = nav.AsJson();
+                builder.Append(s);
+            }
+            return builder.ToString();
+
+        }
+        public static string AsJson(this IElementNavigator navigator, int indent = 0)
         {
             var builder = new StringBuilder();
             var pad = new string(' ', indent * 2);

@@ -3,18 +3,34 @@ using System;
 using Hl7.FhirPath;
 using System.Text;
 using Fhir.FQuery;
+using Hl7.Fhir.Rest;
 
 namespace Fhir
 {
 
     class Program
     {
-        static void Main(string[] args)
+        public static void TestQueryServer()
         {
-            var patient = TestData.Get("Patient/example");
-            Output.Print(patient);
+            var client = new FhirClient("https://vonk.furore.com");
 
-            string query = 
+            var query = @"
+                select 
+                    name.given[0],
+                    birthDate
+                from
+                    Patient
+            ";
+
+            var result = client.Query(query);
+            Console.WriteLine(result);
+        }
+         
+
+        public static void ParseSingleResource()
+        {
+            var patient = TestData.GetPatient("Patient/example");
+            string statement =
             @"
                 select 
                     name.family[0].upper(),
@@ -30,12 +46,17 @@ namespace Fhir
                     Patient
             ";
 
-            FhirPathCompiler.DefaultSymbolTable.AddSimplifierFunctions(); 
-           
-            var engine = new QueryEngine();
-            var result = engine.Select(patient, query);
+            var result = patient.QuerySelect(statement);
             Output.Print(result);
-            
+        }
+
+        static void Main(string[] args)
+        {
+            FhirPathCompiler.DefaultSymbolTable.AddSimplifierFunctions();
+
+            TestQueryServer();
+
+            Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
     }
