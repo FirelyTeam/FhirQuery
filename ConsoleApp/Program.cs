@@ -16,8 +16,10 @@ namespace Fhir
 
             var query = @"
                 select 
+                    id,
                     name.given[0],
-                    birthDate
+                    birthDate as Ardon,
+                    (name.family | name.given).glue(' ') as fullname
                 from
                     Patient
             ";
