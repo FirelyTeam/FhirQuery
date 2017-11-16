@@ -6,7 +6,7 @@ namespace Fhir.FQuery
     {
         public IList<Field> Fields;
         public string From;
-        public string Where;
+        public IList<Param> Where;
     }
 
 }

@@ -5,4 +5,11 @@
         public string Expression;
         public string Name;
     }
+    
+    public struct Param
+    {
+        public string Name;
+        public string Operator;
+        public string Value;
+    }
 }

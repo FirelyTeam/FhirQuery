@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fhir
+namespace Fhir.FQuery
 {
     public static class Strings
     {

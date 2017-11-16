@@ -3,8 +3,8 @@ using Hl7.FhirPath;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
-namespace Fhir
+ 
+namespace Fhir.FQuery
 {
     public static class Output
     {

@@ -29,7 +29,17 @@ namespace Fhir.FQuery
             }
             return root.ToNavigator();
         }
-         
+
+        public static IEnumerable<IElementNavigator> QuerySelect(this IEnumerable<IElementNavigator> navigators, string query)
+        {
+            var q = Parse.Query(query);
+            foreach (var nav in navigators)
+            {
+                var result = nav.QuerySelect(q);
+                yield return result;
+            }
+        }
+
         public static IEnumerable<IElementNavigator> QuerySelect(this IEnumerable<IElementNavigator> navigators, Query query)
         {
             foreach(var nav in navigators)

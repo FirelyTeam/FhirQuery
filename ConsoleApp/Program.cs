@@ -13,21 +13,30 @@ namespace Fhir
         public static void TestQueryServer()
         {
             var client = new FhirClient("https://vonk.furore.com");
+            client.OnBeforeRequest += Client_OnBeforeRequest; 
 
             var query = @"
                 select 
                     id,
+                    gender,
                     name.given[0],
                     birthDate as Ardon,
                     (name.family | name.given).glue(' ') as fullname
                 from
                     Patient
+                where 
+                    gender = 'male' and family='chalmers'
             ";
 
             var result = client.Query(query);
             Console.WriteLine(result);
         }
-         
+
+        private static void Client_OnBeforeRequest(object sender, BeforeRequestEventArgs e)
+        {
+            var client = ((FhirClient)sender);
+            Console.WriteLine(client.LastRequest.Address);
+        }
 
         public static void ParseSingleResource()
         {
@@ -46,6 +55,8 @@ namespace Fhir
                     active
                 from
                     Patient
+                where 
+                    Family = 'Chalmers'
             ";
 
             var result = patient.QuerySelect(statement);
