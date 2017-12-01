@@ -9,6 +9,7 @@
     <PackageReference Include="Hl7.Fhir.STU3" Version="0.94.0-alpha1" />
     <PackageReference Include="Hl7.Fhir.Support" Version="0.94.0-alpha1" />
     <PackageReference Include="Hl7.FhirPath" Version="0.94.0-alpha1" />
+    <PackageReference Include="Harthoorn.Dixit" Version="0.1.2-beta" />
   </ItemGroup>
 
 </Project>

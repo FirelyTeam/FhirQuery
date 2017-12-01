@@ -24,8 +24,12 @@ namespace Fhir.FQuery
 
             foreach (var field in query.Fields)
             {
-                var subtree = nav.Select(field.Expression);
-                root.Apply(subtree, field.Name);
+                var subtree = nav.Select(field);
+                root.Apply(subtree, field);
+
+                // For when we re-enable FhirPath
+                //var subtree = nav.Select(field.Expression);
+                //root.Apply(subtree, field.Name);
             }
             return root.ToNavigator();
         }
