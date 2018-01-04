@@ -2,12 +2,12 @@
 
 namespace Fhir.FQuery
 {
-    public class Query
-    {
-        //public IList<Field> Fields;
-        public IList<string> Fields;
-        public string From;
-        public IList<Param> Where;
-    }
+    //public class Query
+    //{
+    //    //public IList<Field> Fields;
+    //    public IList<string> Fields;
+    //    public string From;
+    //    public IList<Param> Where;
+    //}
 
 }

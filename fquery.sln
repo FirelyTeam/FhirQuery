@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{96191AC5-C236-4134-92E6-63DE16C4E4E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fhir.FQuery", "Fhir.FQuery\Fhir.FQuery.csproj", "{5B863016-BA99-43F0-A4C3-4191C0855CB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fhir.FhirQuery", "Fhir.FQuery\Fhir.FhirQuery.csproj", "{5B863016-BA99-43F0-A4C3-4191C0855CB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

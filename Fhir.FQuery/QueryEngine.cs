@@ -2,25 +2,24 @@
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 using Hl7.FhirPath;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using F = Harthoorn.FQuery;
 
 namespace Fhir.FQuery
 {
     public static class QueryEngine
     {
+
         public static IElementNavigator QuerySelect(this IElementNavigator nav, string query)
         {
             var q = Parse.Query(query);
             return QuerySelect(nav, q);
         }
 
-        public static IElementNavigator QuerySelect(this IElementNavigator nav, Query query)
+        public static IElementNavigator QuerySelect(this IElementNavigator nav, F.Query query)
         {
-            var root = ElementNode.Node(query.From);
+            var root = ElementNode.Node(query.Resource);
 
             foreach (var field in query.Fields)
             {
@@ -44,7 +43,7 @@ namespace Fhir.FQuery
             }
         }
 
-        public static IEnumerable<IElementNavigator> QuerySelect(this IEnumerable<IElementNavigator> navigators, Query query)
+        public static IEnumerable<IElementNavigator> QuerySelect(this IEnumerable<IElementNavigator> navigators, F.Query query)
         {
             foreach(var nav in navigators)
             {
@@ -71,12 +70,10 @@ namespace Fhir.FQuery
             }
         }
 
-       
-
-        public static string Search(this FhirClient client, Query query)
+        public static string Search(this FhirClient client, F.Query query)
         {
             var searchquery = query.ToSearchParams();
-            var bundle = client.Search(searchquery, query.From);
+            var bundle = client.Search(searchquery, query.Resource);
             var navigators = bundle.GetNavigators();
             var projections = navigators.QuerySelect(query);
             return projections.ToJson();
@@ -87,5 +84,6 @@ namespace Fhir.FQuery
             var q = Parse.Query(query);
             return client.Search(q);
         }
+
     }
 }
