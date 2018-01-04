@@ -13,20 +13,27 @@ namespace Fhir
         public static void TestQueryServer()
         {
             var client = new FhirClient("https://vonk.furore.com");
-            client.OnBeforeRequest += Client_OnBeforeRequest; 
+            client.OnBeforeRequest += Client_OnBeforeRequest;
 
-            var query = @"
-                select 
+            var query = @"select
                     id,
                     gender,
-                    name.given[0],
-                    birthDate as Ardon,
-                    (name.family | name.given).glue(' ') as fullname
-                from
+                    name
+                from 
                     Patient
-                where 
-                    gender = 'male' and family='chalmers'
             ";
+            //var query = @"
+            //    select 
+            //        id,
+            //        gender,
+            //        name.given[0],
+            //        birthDate as Ardon,
+            //        (name.family | name.given).glue(' ') as fullname
+            //    from
+            //        Patient
+            //    where 
+            //        gender = 'male' and family='chalmers'
+            //";
 
             var result = client.Query(query);
             Console.WriteLine(result);
